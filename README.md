@@ -8,3 +8,13 @@ Realtime version of [libdjwaveform](https://github.com/turbo/libdjwaveform) - re
 This makes use of direct SoundData to Buffer copies by packing two 16bit samples into one 32bit uint for the FFT SSBO.
 
 Learn more about Love 12 compute shaders in my blog series: https://code.tc/blog/?q=love2d
+
+![](demo.gif)
+
+<hr>
+
+License (code): Public Domain or CC0 (your choice)
+
+The demo song Bad Sign by Brad Sucks is licensed under a Attribution-ShareAlike 3.0 International License. This also applies to the derivatives (stems) included as examples in this project.
+
+Serato is a trademark and not affiliated in any way with this project.
