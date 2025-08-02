@@ -5,15 +5,14 @@ layout(std430) buffer SamplesBuf { float samples[]; };
 layout(r32f) writeonly uniform image2D SampImg;
 
 uniform int totalSamples;
-uniform int texWidth;          /* width of SampImg */
+uniform int texWidth; /* width of SampImg */
 
-void computemain()
-{
-    uint gid = gl_GlobalInvocationID.x;
-    if (gid >= uint(totalSamples)) return;
+void computemain() {
+  uint gid = gl_GlobalInvocationID.x;
+  if (gid >= uint(totalSamples))
+    return;
 
-    int x = int(gid %  uint(texWidth));
-    int y = int(gid /  uint(texWidth));
-    imageStore(SampImg, ivec2(x, y),
-               vec4(samples[gid], 0.0, 0.0, 1.0));
+  int x = int(gid % uint(texWidth));
+  int y = int(gid / uint(texWidth));
+  imageStore(SampImg, ivec2(x, y), vec4(samples[gid], 0.0, 0.0, 1.0));
 }

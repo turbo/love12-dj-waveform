@@ -37,8 +37,7 @@ local function updateHannBuffer(N)
   for i = 0, N - 1 do
     vals[i + 1] = 0.5 * (1 - cos(2 * pi * i / (N - 1)))
   end
-  hannBuf = love.graphics.newBuffer("float", N, { shaderstorage = true })
-  hannBuf:setArrayData(vals)
+  hannBuf = love.graphics.newBuffer("float", vals, { shaderstorage = true })
   hannSize = N
   profiler.pop()
 end
@@ -59,10 +58,8 @@ local function buildGradientBuffers(grad)
     flat[#flat + 1] = p.b / 255
     flat[#flat + 1] = 0
   end
-  gradBufF = love.graphics.newBuffer("float", 64, { shaderstorage = true })
-  gradBufF:setArrayData(freq)
-  gradBufC = love.graphics.newBuffer("float", 256, { shaderstorage = true })
-  gradBufC:setArrayData(flat)
+  gradBufF = love.graphics.newBuffer("float", freq, { shaderstorage = true })
+  gradBufC = love.graphics.newBuffer("float", flat, { shaderstorage = true })
   profiler.pop()
 end
 
@@ -73,12 +70,11 @@ local function updateSampleBuffer(samples)
   if not sampleBuf or n > sampleBufSize then
     sampleBuf = love.graphics.newBuffer(
       "float",
-      n,
+      samples,
       { shaderstorage = true }
     )
     sampleBufSize = n
   end
-  sampleBuf:setArrayData(samples)
   profiler.pop()
 end
 
